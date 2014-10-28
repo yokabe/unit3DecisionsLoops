@@ -21,8 +21,10 @@ public class FindFirstMatch
             {
                 found = true;
             }
-            
-            index++;
+            else
+            {
+                index++;
+            }
         }
         
         if( found )
