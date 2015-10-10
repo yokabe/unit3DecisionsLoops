@@ -21,11 +21,6 @@ public class GameOfLife
     private final int ROWS = 5;
     private final int COLS = 5;
     
-    // constants for the location of the three cells initially alive
-    private final int X1 = 0, Y1 = 2;
-    private final int X2 = 2, Y2 = 0;
-    private final int X3 = 2, Y3 = 1;
-
     /**
      * Default constructor for objects of class GameOfLife
      * 
@@ -57,21 +52,26 @@ public class GameOfLife
      */
     private void populateGame()
     {
+        // constants for the location of the three cells initially alive
+        final int X1 = 2, Y1 = 0;
+        final int X2 = 0, Y2 = 2;
+        final int X3 = 1, Y3 = 2;
+
         // the grid of Actors that maintains the state of the game
         //  (alive cells contains actors; dead cells do not)
         Grid<Actor> grid = world.getGrid();
         
         // create and add rocks (a type of Actor) to the three intial locations
         Rock rock1 = new Rock();
-        Location loc1 = new Location(X1, Y1);
+        Location loc1 = new Location(Y1, X1);
         grid.put(loc1, rock1);
         
         Rock rock2 = new Rock();
-        Location loc2 = new Location(X2, Y2);
+        Location loc2 = new Location(Y2, X2);
         grid.put(loc2, rock2);
         
         Rock rock3 = new Rock();
-        Location loc3 = new Location(X3, Y3);
+        Location loc3 = new Location(Y3, X3);
         grid.put(loc3, rock3);
     }
 
