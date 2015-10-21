@@ -1,3 +1,5 @@
+package GameOfLifeLab;
+
 
 import static org.junit.Assert.*;
 import org.junit.After;

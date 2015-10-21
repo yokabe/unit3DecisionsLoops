@@ -1,40 +1,37 @@
+import java.util.Scanner;
 
-
-/**
- * Write a description of class CircleOverlap here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class CircleOverlap
 {
-    /** description of instance variable x (add comment for each instance variable) */
-    private int x;
+   public static void main(String[] args)
+   {
+      Scanner in = new Scanner(System.in);
 
-    /**
-     * Default constructor for objects of class CircleOverlap
-     */
-    public CircleOverlap()
-    {
-        // initialise instance variables
-        x = 0;
-    }
+      System.out.print("Input the radius of the first circle: ");
+      double radius1 = in.nextDouble(); 
+      double xcenter1 = 0;
+      double ycenter1 = 0;
+      System.out.print("Input the radius of the second circle: ");
+      double radius2 = in.nextDouble(); 
+      double xcenter2 = 40;
+      double ycenter2 = 0;
 
-    /**
-     * An example of a method - replace this comment with your own
-     *    that describes the operation of the method
-     *
-     * @pre        preconditions for the method
-     *            (what the method assumes about the method's parameters and class's state)
-     * @post    postconditions for the method
-     *            (what the method guarantees upon completion)
-     * @param    y    description of parameter y
-     * @return    description of the return value
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x+y;
-    }
-
+      // Your work goes here
+      
+      if (Math.pow(radius1-radius2, 2)<= Math.pow(xcenter1-xcenter2, 2)+Math.pow(ycenter1-ycenter2, 2)
+      && Math.pow(xcenter1-xcenter2, 2)+Math.pow(ycenter1-ycenter2, 2) <= Math.pow(radius1+radius2, 2))
+      {
+        System.out.println("Circles overlap");  
+        }
+        else
+        {
+            if ((radius1+radius2 > 80)
+            {
+                System.out.println("Circles are mutually contained");
+            }
+            else
+            {
+                System.out.println("Circles are disjoint");
+            }
+        }
+   }
 }
