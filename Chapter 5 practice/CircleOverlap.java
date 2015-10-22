@@ -24,7 +24,7 @@ public class CircleOverlap
         }
         else
         {
-            if ((radius1+radius2 > 80)
+            if (radius1+radius2 > 80)
             {
                 System.out.println("Circles are mutually contained");
             }
