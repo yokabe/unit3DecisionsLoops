@@ -21,13 +21,50 @@ public class practice
         
         
         
-        for (int i = 1; i <5; i++)
+        for (int i = 1; i <= 2; i++)
         {
-            for (int a = 1
+            for (int a = 1; a <= 4; a++)
+            {
+                System.out.print(i);
+                System.out.println(a);
+            }
+        }
+        
+        int c = 1;
+        int d = 1;
+        while (c <= 2)
+        {
+            d = 1;
+            while (d <= 4)
+            {
+                System.out.print(c);
+                System.out.println(d);
+                d++;
+            }
+            c++;
+        }
+        
+        int e = 1;
+        int f = 1;
+        
+        do
+        {
+            f=1;
+            
+            do
             {
                 
+                System.out.print(e);
+                System.out.println(f);
+                f++;
+                
             }
-            
-        }
+            while (f <= 4);
+            e++;
+        } 
+        while (e <= 2);
+        
     }
 }
+
+   
