@@ -8,18 +8,45 @@ public class Diamond
         
         System.out.println("Width: ");
         int sideWidth = scanner.nextInt();
-        int a = 0;
-        
-        for (int i = 1; i < sideWidth; i+=2)
+        int a = (sideWidth*2) - 1;
+        int b = 1;
+        while (a >= b)
         {
-            System.out.println("*");
-            a = 0;
-            while (a <= i)
+            if (b != a)
             {
-                System.out.print("*");
-                a +=1;
+                for (int e = a-4; b+1 <=e; e-=1)
+                {
+                    System.out.print(" ");
+                }
             }
-           
+            for (int c = 1; b >= c; c++)
+            {
+               if (b == c)
+                {
+                    System.out.println("*");
+                }
+                else
+                {
+                    System.out.print("*");
+                }
+            }
+            b += 2;
+        }
+        int d = a - 2;
+        while (d >= 1)
+        {
+            for (int c = 1; d >= c; c++)
+            {
+               if (d == c)
+                {
+                    System.out.println("*");
+                }
+                else
+                {
+                    System.out.print("*");
+                }
+            }
+            d -= 2;
         }
     }
 }
