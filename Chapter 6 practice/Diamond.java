@@ -12,13 +12,13 @@ public class Diamond
         int b = 1;
         while (a >= b)
         {
-            if (b != a)
+            
+            
+            for (int e = a*2; b <=e; e-=2)
             {
-                for (int e = a-4; b+1 <=e; e-=1)
-                {
-                    System.out.print(" ");
-                }
+                System.out.print(" ");
             }
+            
             for (int c = 1; b >= c; c++)
             {
                if (b == c)
@@ -35,6 +35,10 @@ public class Diamond
         int d = a - 2;
         while (d >= 1)
         {
+            for (int e = a*2; d <=e; e-=2)
+            {
+                System.out.print(" ");
+            }
             for (int c = 1; d >= c; c++)
             {
                if (d == c)
