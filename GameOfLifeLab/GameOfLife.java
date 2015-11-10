@@ -1,10 +1,10 @@
-package GameOfLifeLab;
+ 
 
 import info.gridworld.actor.Actor;
 import info.gridworld.actor.ActorWorld;
 import info.gridworld.actor.Rock;
 import info.gridworld.grid.Grid;
-import info.gridworld.grid.BoundedGrid;
+import info.gridworld.grid.UnboundedGrid;
 import info.gridworld.grid.Location;
 
 /**
@@ -32,7 +32,7 @@ public class GameOfLife
     public GameOfLife()
     {
         // create the grid, of the specified size, that contains Actors
-        BoundedGrid<Actor> grid = new BoundedGrid<Actor>(ROWS, COLS);
+        UnboundedGrid<Actor> grid = new UnboundedGrid<Actor>();
         
         // create a world based on the grid
         world = new ActorWorld(grid);
@@ -55,26 +55,38 @@ public class GameOfLife
     private void populateGame()
     {
         // constants for the location of the three cells initially alive
-        final int X1 = 2, Y1 = 0;
-        final int X2 = 0, Y2 = 2;
-        final int X3 = 1, Y3 = 2;
+        
 
         // the grid of Actors that maintains the state of the game
         //  (alive cells contains actors; dead cells do not)
         Grid<Actor> grid = world.getGrid();
+       
         
+        
+        
+        for (int i =0; i <= 4; i++)
+        {
+            for (int a = 0; a <= 4; a++)
+            {
+                if (i == 0 && a == 0 ||
+                    i == 0 && a == 4 ||
+                    i == 1 && a == 1 ||
+                    i == 1 && a == 3 ||
+                    i == 2 && a == 2 ||
+                    i == 3 && a == 1 ||
+                    i == 3 && a == 3 ||
+                    i == 4 && a == 0 ||
+                    i == 4 && a == 4 )
+                    {
+                        Actor rock1 = new Actor();
+                        Location loc1 = new Location(i, a);
+                        grid.put(loc1, rock1);
+                    }
+            }
+        }
         // create and add rocks (a type of Actor) to the three intial locations
-        Rock rock1 = new Rock();
-        Location loc1 = new Location(Y1, X1);
-        grid.put(loc1, rock1);
         
-        Rock rock2 = new Rock();
-        Location loc2 = new Location(Y2, X2);
-        grid.put(loc2, rock2);
         
-        Rock rock3 = new Rock();
-        Location loc3 = new Location(Y3, X3);
-        grid.put(loc3, rock3);
     }
 
     /**
@@ -85,7 +97,7 @@ public class GameOfLife
      * @post    the world has been populated with a new grid containing the next generation
      * 
      */
-    private void createNextGeneration()
+    public void createNextGeneration()
     {
         /** You will need to read the documentation for the World, Grid, and Location classes
          *      in order to implement the Game of Life algorithm and leverage the GridWorld framework.
@@ -94,7 +106,102 @@ public class GameOfLife
         // create the grid, of the specified size, that contains Actors
         Grid<Actor> grid = world.getGrid();
         
-        // insert magic here...
+        Actor actor = new Actor();
+        int neighbor;
+        
+        for (int i = 0; i <= 4; i++)
+        {
+            for (int a = 0; a <=4; a++)
+            {
+                neighbor = 0;
+                if (getActor(i, a) != null)
+                {
+                    if (getActor(i+1, a) != null)
+                    {
+                        neighbor += 1;
+                    }
+                    
+                    if (getActor(i, a+1) != null)
+                    {
+                        neighbor += 1;
+                    }
+                    if (getActor(i, a-1) != null)
+                    {
+                        neighbor += 1;
+                    }
+                    if (getActor(i+1, a+1) != null)
+                    {
+                        neighbor += 1;
+                    }
+                    if (getActor(i+1, a-1) != null)
+                    {
+                        neighbor += 1;
+                    }
+                    if (getActor(i-1, a+1) != null)
+                    {
+                        neighbor += 1;
+                    }
+                    if (getActor(i-1, a-1) != null)
+                    {
+                        neighbor += 1;
+                    }
+                    
+                    if (getActor(i-1, a) != null)
+                    {
+                            neighbor += 1;
+                        }
+                    
+                    
+                    if (neighbor < 2 || neighbor > 3)
+                    {
+                        Location loc = new Location(i, a);
+                        grid.remove(loc);
+                    }
+                }
+                else
+                {
+                    if (getActor(i+1, a) != null)
+                    {
+                        neighbor += 1;
+                    }
+                    if (getActor(i-1, a) != null)
+                    {
+                        neighbor += 1;
+                    }
+                    if (getActor(i, a+1) != null)
+                    {
+                        neighbor += 1;
+                    }
+                    if (getActor(i, a-1) != null)
+                    {
+                        neighbor += 1;
+                    }
+                    if (getActor(i+1, a+1) != null)
+                    {
+                        neighbor += 1;
+                    }
+                    if (getActor(i+1, a-1) != null)
+                    {
+                        neighbor += 1;
+                    }
+                    if (getActor(i-1, a+1) != null)
+                    {
+                        neighbor += 1;
+                    }
+                    if (getActor(i-1, a-1) != null)
+                    {
+                        neighbor += 1;
+                    }   
+                    
+                    
+                    if (neighbor == 3)
+                    {
+                        Location loc2 = new Location(i, a);
+                        grid.put(loc2, actor);
+                    }
+                }
+            }
+        }
         
     }
     
@@ -141,6 +248,8 @@ public class GameOfLife
     public static void main(String[] args)
     {
         GameOfLife game = new GameOfLife();
+        game.populateGame();
+        game.createNextGeneration();
     }
 
 }

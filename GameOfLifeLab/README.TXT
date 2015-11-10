@@ -1,4 +1,4 @@
-Introduction
+﻿Introduction
 
 The goal of this lab is to apply your understanding of decision and loop
 	structures to implement a complex algorithm within the context of an
@@ -47,6 +47,14 @@ Artifacts to Produce:
 	reasonable and document them in a requirements document. I must review
 	your requirements document before you start the design document or test
 	plan. You may change the requirements document throughout development.
+	
+	- Size of grid: 5x5 with bounds 
+	- Cells: Blue sqaures
+	- Dead cells: blank/white squares
+	- Initial pattern is chosen by programmer
+	- 1 second time interval
+	- The edge will be cliffs and if a cell falls off, they die
+
 * Design Document: You must do some design activity before starting
 	implementation. This may consist of a flow cart, pseudocode, or other
 	design artifact. I must review your design document before you start
