@@ -7,6 +7,8 @@ import info.gridworld.grid.Grid;
 import info.gridworld.grid.UnboundedGrid;
 import info.gridworld.grid.Location;
 
+import java.util.Random;
+
 /**
  * Game of Life starter code. Demonstrates how to create and populate the game using the GridWorld framework.
  * Also demonstrates how to provide accessor methods to make the class testable by unit tests.
@@ -43,6 +45,7 @@ public class GameOfLife
         // display the newly constructed and populated world
         world.show();
         
+        
     }
     
     /**
@@ -61,22 +64,16 @@ public class GameOfLife
         //  (alive cells contains actors; dead cells do not)
         Grid<Actor> grid = world.getGrid();
        
+        Random rand = new Random();
         
+        int n;
         
-        
-        for (int i =0; i <= 4; i++)
+        for (int i =0; i <= 500; i++)
         {
-            for (int a = 0; a <= 4; a++)
+            for (int a = 0; a <= 500; a++)
             {
-                if (i == 0 && a == 0 ||
-                    i == 0 && a == 4 ||
-                    i == 1 && a == 1 ||
-                    i == 1 && a == 3 ||
-                    i == 2 && a == 2 ||
-                    i == 3 && a == 1 ||
-                    i == 3 && a == 3 ||
-                    i == 4 && a == 0 ||
-                    i == 4 && a == 4 )
+                n = rand.nextInt(10);
+                if (n == 2 || n == 5 || n == 7 || n== 9 || n == 1)
                     {
                         Actor rock1 = new Actor();
                         Location loc1 = new Location(i, a);
@@ -84,10 +81,33 @@ public class GameOfLife
                     }
             }
         }
+        
+        //Tested version (Works if this is placed as code for populateGame)
+        
+        //for (int i =0; i <= 4; i++)
+        //{
+           // for (int a = 0; a <= 4; a++)
+            //{
+              //  if (i == 0 && a == 0 ||
+                //    i == 0 && a == 4 ||
+                //    i == 1 && a == 1 ||
+                //    i == 1 && a == 3 ||
+                //    i == 2 && a == 2 ||
+                //    i == 3 && a == 1 ||
+                //    i == 3 && a == 3 ||
+                //    i == 4 && a == 0 ||
+                //    i == 4 && a == 4 )
+                //    {
+                //        Actor rock1 = new Actor();
+                //        Location loc1 = new Location(i, a);
+                 //       grid.put(loc1, rock1);
+                 //   }
+         //   }
+        
         // create and add rocks (a type of Actor) to the three intial locations
         
         
-    }
+   }
 
     /**
      * Generates the next generation based on the rules of the Game of Life and updates the grid
@@ -103,8 +123,12 @@ public class GameOfLife
          *      in order to implement the Game of Life algorithm and leverage the GridWorld framework.
          */
         
+        
+        
         // create the grid, of the specified size, that contains Actors
+        
         Grid<Actor> grid = world.getGrid();
+        UnboundedGrid<Actor> grid1 = new UnboundedGrid<Actor>();
         
         Actor actor = new Actor();
         int neighbor;
@@ -152,10 +176,10 @@ public class GameOfLife
                         }
                     
                     
-                    if (neighbor < 2 || neighbor > 3)
+                    if (neighbor == 2 || neighbor == 3)
                     {
                         Location loc = new Location(i, a);
-                        grid.remove(loc);
+                        grid1.put(loc, actor);
                     }
                 }
                 else
@@ -197,12 +221,12 @@ public class GameOfLife
                     if (neighbor == 3)
                     {
                         Location loc2 = new Location(i, a);
-                        grid.put(loc2, actor);
+                        grid1.put(loc2, actor);
                     }
                 }
             }
         }
-        
+        world.setGrid(grid1);
     }
     
     /**
@@ -246,10 +270,14 @@ public class GameOfLife
      *
      */
     public static void main(String[] args)
+    throws InterruptedException
     {
         GameOfLife game = new GameOfLife();
-        game.populateGame();
-        game.createNextGeneration();
+        for (int i = 0; i < 10000; i++)
+        {
+            game.createNextGeneration();
+            Thread.sleep(1000);
+        }
     }
 
 }
