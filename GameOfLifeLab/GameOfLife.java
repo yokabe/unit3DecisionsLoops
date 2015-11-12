@@ -133,9 +133,9 @@ public class GameOfLife
         Actor actor = new Actor();
         int neighbor;
         
-        for (int i = 0; i <= 4; i++)
+        for (int i = 0; i <= 1000; i++)
         {
-            for (int a = 0; a <=4; a++)
+            for (int a = 0; a <= 1000; a++)
             {
                 neighbor = 0;
                 if (getActor(i, a) != null)
@@ -273,10 +273,11 @@ public class GameOfLife
     throws InterruptedException
     {
         GameOfLife game = new GameOfLife();
+        
         for (int i = 0; i < 10000; i++)
         {
-            game.createNextGeneration();
             Thread.sleep(1000);
+            game.createNextGeneration();
         }
     }
 
