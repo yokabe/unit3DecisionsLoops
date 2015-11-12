@@ -274,6 +274,7 @@ public class GameOfLife
     {
         GameOfLife game = new GameOfLife();
         
+        // A for loop that runs through many generations
         for (int i = 0; i < 10000; i++)
         {
             Thread.sleep(1000);
