@@ -48,12 +48,12 @@ Artifacts to Produce:
 	your requirements document before you start the design document or test
 	plan. You may change the requirements document throughout development.
 	
-	- Size of grid: 5x5 with bounds 
-	- Cells: Blue sqaures
+	- Size of grid: for test5x5 with bounds (For final version it is infinite)
+	- Cells: Blue actors
 	- Dead cells: blank/white squares
-	- Initial pattern is chosen by programmer
+	- Initial pattern is chosen by programmer for test (Final submitted one, the pattern is chosen randomly)
 	- 1 second time interval
-	- The edge will be cliffs and if a cell falls off, they die
+	- No bounds
 
 * Design Document: You must do some design activity before starting
 	implementation. This may consist of a flow cart, pseudocode, or other

@@ -31,7 +31,7 @@ public class GameOfLife
      * @post    the game will be initialized and populated with the initial state of cells
      * 
      */
-    public GameOfLife()
+    public GameOfLife(boolean test)
     {
         // create the grid, of the specified size, that contains Actors
         UnboundedGrid<Actor> grid = new UnboundedGrid<Actor>();
@@ -40,7 +40,7 @@ public class GameOfLife
         world = new ActorWorld(grid);
         
         // populate the game
-        populateGame();
+        populateGame(test);
         
         // display the newly constructed and populated world
         world.show();
@@ -55,7 +55,7 @@ public class GameOfLife
      * @post    all actors that comprise the initial state of the game have been added to the grid
      * 
      */
-    private void populateGame()
+    private void populateGame(boolean test)
     {
         // constants for the location of the three cells initially alive
         
@@ -66,48 +66,57 @@ public class GameOfLife
        
         Random rand = new Random();
         
-        int n;
+        int n; // Nunmber variable for random number
         
-        for (int i =0; i <= 500; i++)
+        // Runs for regular program
+        if (test == false)
         {
-            for (int a = 0; a <= 500; a++)
+            // Randomly places an actor at coordinates (a, i)
+            for (int i =0; i <= 1000; i++)
             {
-                n = rand.nextInt(10);
-                if (n == 2 || n == 5 || n == 7 || n== 9 || n == 1)
-                    {
-                        Actor rock1 = new Actor();
-                        Location loc1 = new Location(i, a);
-                        grid.put(loc1, rock1);
-                    }
+                for (int a = 0; a <= 1000; a++)
+                {
+                    n = rand.nextInt(10);
+                    // Randomly chooses where an actor is initially placed on a grid
+                    if (n == 2 || n == 5 || n == 7 || n== 9 || n == 1)
+                        {
+                            Actor rock1 = new Actor();
+                            Location loc1 = new Location(i, a);
+                            grid.put(loc1, rock1);
+                        }
+                    }   
+                }
             }
-        }
         
         //Tested version (Works if this is placed as code for populateGame)
+        if (test == true)
+        {
+            for (int i =0; i <= 4; i++)
+            {
+                for (int a = 0; a <= 4; a++)
+                {
+                    if (i == 0 && a == 0 ||
+                        i == 0 && a == 4 ||
+                        i == 1 && a == 1 ||
+                        i == 1 && a == 3 ||
+                        i == 2 && a == 2 ||
+                        i == 3 && a == 1 ||
+                        i == 3 && a == 3 ||
+                        i == 4 && a == 0 ||
+                        i == 4 && a == 4 )
+                        {
+                            Actor rock1 = new Actor();
+                            Location loc1 = new Location(i, a);
+                            grid.put(loc1, rock1);
+                        }
+                    }
         
-        //for (int i =0; i <= 4; i++)
-        //{
-           // for (int a = 0; a <= 4; a++)
-            //{
-              //  if (i == 0 && a == 0 ||
-                //    i == 0 && a == 4 ||
-                //    i == 1 && a == 1 ||
-                //    i == 1 && a == 3 ||
-                //    i == 2 && a == 2 ||
-                //    i == 3 && a == 1 ||
-                //    i == 3 && a == 3 ||
-                //    i == 4 && a == 0 ||
-                //    i == 4 && a == 4 )
-                //    {
-                //        Actor rock1 = new Actor();
-                //        Location loc1 = new Location(i, a);
-                 //       grid.put(loc1, rock1);
-                 //   }
-         //   }
-        
-        // create and add rocks (a type of Actor) to the three intial locations
+       
         
         
-   }
+                }
+            }
+        }
 
     /**
      * Generates the next generation based on the rules of the Game of Life and updates the grid
@@ -128,16 +137,22 @@ public class GameOfLife
         // create the grid, of the specified size, that contains Actors
         
         Grid<Actor> grid = world.getGrid();
-        UnboundedGrid<Actor> grid1 = new UnboundedGrid<Actor>();
         
-        Actor actor = new Actor();
-        int neighbor;
+        UnboundedGrid<Actor> grid1 = new UnboundedGrid<Actor>(); // new Grid
         
+        Actor actor = new Actor(); // Actor objects
+        int neighbor; //A number to account for the number of neighbors each actor has
+        /** A for loop for determining the number of neighbors each actor has, and then it 
+         * decides whether the actor lives or dies, or if a dead actor comes to life, and it
+         * puts the new lay out on a new grid that replaces the previous grid after the for loop ends
+         */
+        // For loop goes through each grid space with the for loop
         for (int i = 0; i <= 1000; i++)
         {
             for (int a = 0; a <= 1000; a++)
             {
                 neighbor = 0;
+                // if-else checks if there is an alive actor at coordinates (a,i)
                 if (getActor(i, a) != null)
                 {
                     if (getActor(i+1, a) != null)
@@ -175,7 +190,7 @@ public class GameOfLife
                             neighbor += 1;
                         }
                     
-                    
+                    // if an actor has 2 or 3 neighbors, it comes to life
                     if (neighbor == 2 || neighbor == 3)
                     {
                         Location loc = new Location(i, a);
@@ -217,7 +232,7 @@ public class GameOfLife
                         neighbor += 1;
                     }   
                     
-                    
+                    // If a dead actor has 3 neighbors, it comes to life
                     if (neighbor == 3)
                     {
                         Location loc2 = new Location(i, a);
@@ -272,12 +287,12 @@ public class GameOfLife
     public static void main(String[] args)
     throws InterruptedException
     {
-        GameOfLife game = new GameOfLife();
-        
+        GameOfLife game = new GameOfLife(false);
+        Thread.sleep(1000);
         // A for loop that runs through many generations
         for (int i = 0; i < 10000; i++)
         {
-            Thread.sleep(1000);
+            Thread.sleep(100);
             game.createNextGeneration();
         }
     }

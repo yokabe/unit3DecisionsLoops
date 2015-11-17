@@ -57,7 +57,7 @@ public class GameOfLifeTest
          *  
          */
         
-        GameOfLife game = new GameOfLife();
+        GameOfLife game = new GameOfLife(true);
         final int ROWS = game.getNumRows();
         final int COLS = game.getNumCols();
 
@@ -107,7 +107,7 @@ public class GameOfLifeTest
          *  
          */
         
-        GameOfLife game = new GameOfLife();
+        GameOfLife game = new GameOfLife(true);
         game.createNextGeneration();
         game.createNextGeneration();
         final int ROWS = game.getNumRows();
